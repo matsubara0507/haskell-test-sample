@@ -1,0 +1,44 @@
+name:                haskell-test-sample
+version:             0.1.0.0
+github:              "matsubara0507/haskell-test-sample"
+license:             BSD-3-Clause
+author:              "MATSUBARA Nobutada"
+maintainer:          "nobutada0507@gmail.com"
+copyright:           "2024 MATSUBARA Nobutada"
+
+extra-source-files:
+- README.md
+- CHANGELOG.md
+
+description:         Please see the README on GitHub at <https://github.com/matsubara0507/haskell-test-sample#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wmissing-home-modules
+- -Wpartial-fields
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  haskell-test-sample-exe:
+    main:                Main.hs
+    source-dirs:         app
+    dependencies:
+    - haskell-test-sample
+
+tests:
+  haskell-test-sample-test:
+    main:                Spec.hs
+    source-dirs:         test
+    dependencies:
+    - haskell-test-sample
