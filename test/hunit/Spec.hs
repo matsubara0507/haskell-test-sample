@@ -14,7 +14,8 @@ main = runTestTTAndExit $ TestList
       , TestCase $
           parse' natParser "positive number" "1234567890" @?= Right 1234567890
       , TestCase $
-          parse' natParser "negative number" "-1" @?= Left "negative number:1:1:\n  |\n1 | -1\n  | ^\nunexpected '-'\nexpecting numeric character\n"
+          parse' natParser "negative number" "-1" @?=
+            Left "negative number:1:1:\n  |\n1 | -1\n  | ^\nunexpected '-'\nexpecting numeric character\n"
       , TestCase $
           parse' natParser "rational number" "0.0123" @?= Right 0
       ]
