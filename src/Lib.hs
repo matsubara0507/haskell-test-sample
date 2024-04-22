@@ -5,6 +5,7 @@ module Lib
     ) where
 
 import Data.Ratio ((%))
+import Numeric.Natural (Natural)
 import Text.Megaparsec
 import Text.Megaparsec.Char (numberChar, char, hspace)
 import Text.Read (readMaybe)
@@ -21,8 +22,8 @@ instance ShowErrorComponent CustomError where
 -- expr     ::= term (('+'|'-') term)*
 -- term     ::= factor (('*'|'/') factor)*
 -- factor   ::= '(' expr ')' | rational
--- rational ::= ('-'|ε)national('.'national|ε)
--- national ::= [0-9]+
+-- rational ::= ('-'|ε)natural('.'natural|ε)
+-- natural  ::= [0-9]+
 calculate :: String -> Either ParserError Rational
 calculate = parse exprParser "calculate"
 
@@ -77,7 +78,7 @@ factorParser = do
 rationalParser :: Parser Rational
 rationalParser = do
   sign <- signParser
-  nat  <- fromInteger <$> natParser
+  nat  <- toRational <$> natParser
   dot  <- optional (char '.')
   case dot of
     Just _  -> (* sign) <$> (+ nat) <$> fracParser
@@ -86,7 +87,7 @@ rationalParser = do
 signParser :: Parser Rational
 signParser = maybe 1 (const (-1)) <$> optional (char '-')
 
-natParser :: Parser Integer
+natParser :: Parser Natural
 natParser = do
   nat <- some numberChar
   case readMaybe nat of

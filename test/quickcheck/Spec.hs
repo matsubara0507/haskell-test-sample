@@ -6,17 +6,17 @@ import Text.Megaparsec (parseMaybe)
 
 main :: IO ()
 main = do
-  quickCheck propParseNationalNumber
+  quickCheck propParseNaturalNumber
   quickCheck propParseRationalNumber
 
-propParseNationalNumber :: Integer -> Bool
-propParseNationalNumber n
-  | n >= 0    = parseMaybe natParser (show n) == Just n
-  | otherwise = parseMaybe natParser (show $ (-1) * n) == Just ((-1) * n)
+propParseNaturalNumber :: Integer -> Bool
+propParseNaturalNumber n
+  | n >= 0    = fmap toInteger (parseMaybe natParser (show n)) == Just n
+  | otherwise = fmap toInteger (parseMaybe natParser (show $ (-1) * n)) == Just ((-1) * n)
 
 -- | Failuer case
--- propParseNationalNumber :: Integer -> Bool
--- propParseNationalNumber n = parseMaybe natParser (show n) == Just n
+-- propParseNaturalNumber :: Integer -> Bool
+-- propParseNaturalNumber n = parseMaybe natParser (show n) == Just n
 
 propParseRationalNumber :: Double -> Bool
 propParseRationalNumber n =
