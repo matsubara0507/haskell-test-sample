@@ -25,6 +25,6 @@ propParseRationalNumber n =
 -- | Failuer case
 -- propParseRationalNumber :: Rational -> Bool
 -- propParseRationalNumber n =
---   parseMaybe rationalParser (show n') == Just n
+--   parseMaybe rationalParser (showFFloat Nothing n' "") == Just n
 --   where
 --     n' = fromRational n :: Double
