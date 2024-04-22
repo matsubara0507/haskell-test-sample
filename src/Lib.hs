@@ -13,7 +13,7 @@ import Text.Read (readMaybe)
 type Parser = Parsec CustomError String
 type ParserError = ParseErrorBundle String CustomError
 
-newtype CustomError = ReadError String deriving (Eq, Ord)
+newtype CustomError = ReadError String deriving (Eq, Ord, Show)
 
 instance ShowErrorComponent CustomError where
   showErrorComponent (ReadError s) = s
@@ -24,6 +24,11 @@ instance ShowErrorComponent CustomError where
 -- factor   ::= '(' expr ')' | rational
 -- rational ::= ('-'|ε)natural('.'natural|ε)
 -- natural  ::= [0-9]+
+--
+-- >>> calculate "1.23"
+-- Right (123 % 100)
+-- >>> calculate "1 + 2 * (3 - 1.0)"
+-- Right (5 % 1)
 calculate :: String -> Either ParserError Rational
 calculate = parse exprParser "calculate"
 

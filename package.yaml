@@ -52,3 +52,10 @@ tests:
     - haskell-test-sample
     - hspec
     - QuickCheck
+
+  doctest:
+    main:                Spec.hs
+    source-dirs:         test/doctest
+    dependencies:
+    - haskell-test-sample
+    - doctest
