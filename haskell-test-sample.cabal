@@ -106,3 +106,22 @@ test-suite quickcheck
     , haskell-test-sample
     , megaparsec
   default-language: Haskell2010
+
+test-suite tasty
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haskell_test_sample
+  autogen-modules:
+      Paths_haskell_test_sample
+  hs-source-dirs:
+      test/tasty
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      base >=4.7 && <5
+    , haskell-test-sample
+    , megaparsec
+    , tasty
+    , tasty-hunit
+    , tasty-quickcheck
+  default-language: Haskell2010

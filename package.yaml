@@ -59,3 +59,12 @@ tests:
     dependencies:
     - haskell-test-sample
     - doctest
+
+  tasty:
+    main:                Spec.hs
+    source-dirs:         test/tasty
+    dependencies:
+    - haskell-test-sample
+    - tasty
+    - tasty-hunit
+    - tasty-quickcheck
