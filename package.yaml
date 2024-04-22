@@ -31,8 +31,23 @@ library:
   source-dirs: src
 
 tests:
-  haskell-test-sample-test:
+  hunit:
     main:                Spec.hs
-    source-dirs:         test
+    source-dirs:         test/hunit
     dependencies:
     - haskell-test-sample
+    - HUnit
+
+  quickcheck:
+    main:                Spec.hs
+    source-dirs:         test/quickcheck
+    dependencies:
+    - haskell-test-sample
+    - QuickCheck
+
+  hspec:
+    main:                Spec.hs
+    source-dirs:         test/hspec
+    dependencies:
+    - haskell-test-sample
+    - hspec

@@ -38,7 +38,7 @@ library
     , megaparsec
   default-language: Haskell2010
 
-test-suite haskell-test-sample-test
+test-suite hspec
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
@@ -46,10 +46,45 @@ test-suite haskell-test-sample-test
   autogen-modules:
       Paths_haskell_test_sample
   hs-source-dirs:
-      test
+      test/hspec
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , haskell-test-sample
+    , hspec
+    , megaparsec
+  default-language: Haskell2010
+
+test-suite hunit
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haskell_test_sample
+  autogen-modules:
+      Paths_haskell_test_sample
+  hs-source-dirs:
+      test/hunit
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      HUnit
+    , base >=4.7 && <5
+    , haskell-test-sample
+    , megaparsec
+  default-language: Haskell2010
+
+test-suite quickcheck
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_haskell_test_sample
+  autogen-modules:
+      Paths_haskell_test_sample
+  hs-source-dirs:
+      test/quickcheck
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
+  build-depends:
+      QuickCheck
+    , base >=4.7 && <5
     , haskell-test-sample
     , megaparsec
   default-language: Haskell2010
